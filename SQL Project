@@ -1,0 +1,106 @@
+SELECT*
+FROM new_schema.chronicabsencerates;
+
+SELECT CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+FROM new_schema.chronicabsencerates
+WHERE  School IS NULL;
+
+/*Finding the Standard Deviation  Absence count which is'109.3301491251441'*/
+SELECT STDDEV(ChronicAbsenceCount) 
+FROM new_schema.chronicabsencerates;
+
+SELECT COUNT(*)
+FROM new_schema.chronicabsencerates;
+/* total rows equals 1062 */
+
+/*Finding the Average Absence count which is 119.0716 */
+SELECT AVG(ChronicAbsenceCount)
+FROM new_schema.chronicabsencerates;
+
+ALTER TABLE new_schema.chronicabsencerates
+DROP COLUMN average;
+
+SELECT*
+FROM new_schema.chronicabsencerates;
+
+/* Create an Alias for a  new column name average */
+SELECT AVG(ChronicAbsenceCount ) AS average
+FROM new_schema.chronicabsencerates;
+
+SELECT*
+FROM new_schema.chronicabsencerates;
+
+/*Duplicates not found */
+SELECT CostCenterCode, LocationCode, CDSCode, School
+FROM new_schema.chronicabsencerates
+GROUP BY CostCenterCode, LocationCode, CDSCode, School
+HAVING COUNT(*)>1;
+
+/*Finding the Maximum Absence count which is 861 */
+SELECT MAX(ChronicAbsenceCount)
+FROM new_schema.chronicabsencerates;
+
+/*South Gate Senior High School has the highest Absent Rate of a total of 861*/
+SELECT School 
+FROM  new_schema.chronicabsencerates 
+WHERE ChronicAbsenceCount= 861;
+
+/*Exploring South Gate Senior High  that has  highest Absent Rate of a total of 861 Which has a total enrollment of 2,459 */
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='South Gate Senior High';
+
+/*Exploring Eagle Rock Elementary Highly Gifted Magnet and Roy Romer Middle G/HG/HA/Humanities Magnet that has  lowest  Absent Rate of a total of 0 Which has a total enrollment of 32, and 16 */
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='Eagle Rock Elementary Highly Gifted Magnet';
+
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='Roy Romer Middle G/HG/HA/Humanities Magnet';
+
+
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='South Gate Senior High'; 
+
+/*Finding the Minimum Absence count which is 0 */
+SELECT MIN(ChronicAbsenceCount)
+FROM new_schema.chronicabsencerates;
+
+/*Eagle Rock Elementary Highly Gifted Magnet, and Roy Romer Middle G/HG/HA/Humanities Magnet has the lowest Absent Rate of a total of 0*/
+SELECT School 
+FROM  new_schema.chronicabsencerates 
+WHERE ChronicAbsenceCount= 0;
+
+/*Exploring Eagle Rock Elementary Highly Gifted Magnet and Roy Romer Middle G/HG/HA/Humanities Magnet that has  lowest  Absent Rate of a total of 0 Which has a total enrollment of 32, and 16 */
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='Eagle Rock Elementary Highly Gifted Magnet';
+
+SELECT *
+FROM  new_schema.chronicabsencerates 
+Where School='Roy Romer Middle G/HG/HA/Humanities Magnet';
+
+
+/* Exploring all the Absences  from MAX to MIN*/
+SELECT CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+FROM new_schema.chronicabsencerates 
+GROUP BY CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+ORDER BY ChronicAbsenceCount DESC;
+
+
+SELECT CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+FROM new_schema.chronicabsencerates 
+GROUP BY CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+ORDER BY ChronicAbsenceCount DESC
+LIMIT 10;
+
+SELECT CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+FROM new_schema.chronicabsencerates 
+GROUP BY CostCenterCode, LocationCode, CDSCode, School, SchoolYear, NumberEnrolled, ChronicAbsenceCount, ChronicAbsenceRate
+ORDER BY ChronicAbsenceCount ASC
+LIMIT 11;
+
+SELECT*
+FROM new_schema.chronicabsencerates;
